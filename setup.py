@@ -57,7 +57,7 @@ setup_args = dict(
     long_description_content_type="text/markdown",
     cmdclass=cmdclass,
     packages=setuptools.find_packages(),
-    install_requires=["jupyterlab~=3.0",],
+    install_requires=["jupyterlab~=3.0", "ipywidgets~=7.6"],
     extras_require={"dev": {"jupyter-packaging", "cookiecutter", "twine", "bumpversion", "black", "pylint", "pyYaml"}},
     zip_safe=False,
     include_package_data=True,

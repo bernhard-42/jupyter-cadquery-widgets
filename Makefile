@@ -6,6 +6,7 @@ CURRENT_VERSION := $(shell awk '/current_version/ {print $$3}' setup.cfg)
 
 clean:
 	@echo "=> Cleaning"
+	@jlpm clean
 	@rm -fr build dist $(EGGS) $(PYCACHE)
 
 prepare: clean
@@ -30,6 +31,7 @@ endif
 # Dist commands
 
 dist:
+	@jlpm run build
 	@python setup.py bdist_wheel
 
 release:

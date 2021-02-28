@@ -1,8 +1,6 @@
 # jupyter_cadquery_widgets 1.0.0
 
-![Github Actions Status](https://github.com/bernhard-42/jupyter-cadquery/workflows/Build/badge.svg)
-
-A JupyterLab extension.
+Treeview and Image Button widgets for [jupyter-cadquery](https://github.com/bernhard-42/jupyter-cadquery)
 
 
 

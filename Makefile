@@ -20,7 +20,7 @@ ifdef part
 ifdef version
 	bumpversion --new-version $(version) $(part) && grep current setup.cfg
 else
-	bumpversion $(part) && grep current setup.cfg
+	bumpversion --allow-dirty $(part) && grep current setup.cfg
 endif
 else
 	@echo "Provide part=major|minor|patch|release|build and optionally version=x.y.z..."

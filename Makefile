@@ -31,7 +31,6 @@ endif
 # Dist commands
 
 dist:
-	@jlpm run build
 	@python setup.py bdist_wheel
 
 release:

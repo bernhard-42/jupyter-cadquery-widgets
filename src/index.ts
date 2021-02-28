@@ -20,7 +20,7 @@ const extension: JupyterFrontEndPlugin<void> = {
     console.log('JupyterLab extension jupyter_cadquery is activated!');
     widgets.registerWidget({
       name: 'jupyter_cadquery',
-      version: '1.0.0',
+      version: '2.0.0',
       exports: widgetExports
     });
     console.log('jupyter_cadquery widgets registered!');

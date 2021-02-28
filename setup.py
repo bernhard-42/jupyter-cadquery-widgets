@@ -4,13 +4,7 @@ jupyter_cadquery_widgets setup
 import json
 from pathlib import Path
 
-from jupyter_packaging import (
-    create_cmdclass,
-    install_npm,
-    ensure_targets,
-    combine_commands,
-    skip_if_exists
-)
+from jupyter_packaging import create_cmdclass, install_npm, ensure_targets, combine_commands, skip_if_exists
 import setuptools
 
 HERE = Path(__file__).parent.resolve()
@@ -18,7 +12,7 @@ HERE = Path(__file__).parent.resolve()
 # The name of the project
 name = "jupyter_cadquery_widgets"
 
-lab_path = (HERE / name / "labextension")
+lab_path = HERE / name / "labextension"
 
 # Representative files that should exist after a successful build
 jstargets = [
@@ -36,15 +30,9 @@ data_files_spec = [
     ("share/jupyter/labextensions/%s" % labext_name, str(HERE), "install.json"),
 ]
 
-cmdclass = create_cmdclass("jsdeps",
-    package_data_spec=package_data_spec,
-    data_files_spec=data_files_spec
-)
+cmdclass = create_cmdclass("jsdeps", package_data_spec=package_data_spec, data_files_spec=data_files_spec)
 
-js_command = combine_commands(
-    install_npm(HERE, build_cmd="build:prod", npm=["jlpm"]),
-    ensure_targets(jstargets),
-)
+js_command = combine_commands(install_npm(HERE, build_cmd="build:prod", npm=["jlpm"]), ensure_targets(jstargets),)
 
 is_repo = (HERE / ".git").exists()
 if is_repo:
@@ -69,9 +57,8 @@ setup_args = dict(
     long_description_content_type="text/markdown",
     cmdclass=cmdclass,
     packages=setuptools.find_packages(),
-    install_requires=[
-        "jupyterlab~=3.0",
-    ],
+    install_requires=["jupyterlab~=3.0",],
+    extras_require={"dev": {"jupyter-packaging", "cookiecutter", "twine", "bumpversion", "black", "pylint", "pyYaml"}},
     zip_safe=False,
     include_package_data=True,
     python_requires=">=3.6",

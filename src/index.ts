@@ -3,9 +3,7 @@ import {
   JupyterFrontEndPlugin
 } from '@jupyterlab/application';
 
-import {
-  IJupyterWidgetRegistry
-} from '@jupyter-widgets/base'
+import { IJupyterWidgetRegistry } from '@jupyter-widgets/base';
 
 import * as widgetExports from './widgets'
 
@@ -20,7 +18,7 @@ const extension: JupyterFrontEndPlugin<void> = {
     console.log('JupyterLab extension jupyter_cadquery is activated!');
     widgets.registerWidget({
       name: 'jupyter_cadquery',
-      version: '2.0.0',
+      version: '2.0.1',
       exports: widgetExports
     });
     console.log('jupyter_cadquery widgets registered!');
@@ -28,3 +26,9 @@ const extension: JupyterFrontEndPlugin<void> = {
 };
 
 export default extension;
+export {
+  TreeModel,
+  TreeView,
+  ImageButtonModel,
+  ImageButtonView
+} from './widgets';

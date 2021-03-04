@@ -4,20 +4,27 @@ jupyter_cadquery_widgets setup
 import json
 from pathlib import Path
 
-from jupyter_packaging import create_cmdclass, install_npm, ensure_targets, combine_commands, skip_if_exists
+from jupyter_packaging import (
+    create_cmdclass,
+    install_npm,
+    ensure_targets,
+    combine_commands,
+    skip_if_exists,
+)
 import setuptools
 
 HERE = Path(__file__).parent.resolve()
 
 # The name of the project
 name = "jupyter_cadquery_widgets"
-
+py_path = HERE / name
 lab_path = HERE / name / "labextension"
+js_path = HERE / "lib"
 
 # Representative files that should exist after a successful build
-jstargets = [
-    str(lab_path / "package.json"),
-]
+# jstargets = [
+#     str(lab_path / "package.json"),
+# ]
 
 package_data_spec = {
     name: ["*"],
@@ -26,19 +33,32 @@ package_data_spec = {
 labext_name = "jupyter_cadquery"
 
 data_files_spec = [
+    # JupyterLab 3
     ("share/jupyter/labextensions/%s" % labext_name, str(lab_path), "**"),
     ("share/jupyter/labextensions/%s" % labext_name, str(HERE), "install.json"),
+    # Jupyter Notebook
+    ("etc/jupyter/nbconfig", str(HERE / "jupyter-config"), "**/*.json"),
+    ("share/jupyter/nbextensions/jupyter_cadquery", str(py_path / "nbextension"), "**/*.js"),
+    ("share/jupyter/nbextensions/jupyter_cadquery", str(py_path / "nbextension"), "**/*.js.map"),
 ]
 
-cmdclass = create_cmdclass("jsdeps", package_data_spec=package_data_spec, data_files_spec=data_files_spec)
+cmdclass = create_cmdclass(
+    "jsdeps", package_data_spec=package_data_spec, data_files_spec=data_files_spec
+)
 
-js_command = combine_commands(install_npm(HERE, build_cmd="build:prod", npm=["jlpm"]), ensure_targets(jstargets),)
-
-is_repo = (HERE / ".git").exists()
-if is_repo:
-    cmdclass["jsdeps"] = js_command
-else:
-    cmdclass["jsdeps"] = skip_if_exists(jstargets, js_command)
+cmdclass["jsdeps"] = combine_commands(
+    install_npm(
+        path=str(js_path),
+        npm=["yarn"],
+        build_cmd="build:prod",
+    ),
+    ensure_targets(
+        [
+            str(py_path / "nbextension" / "extension.js"),
+            str(py_path / "nbextension" / "index.js"),
+        ]
+    ),
+)
 
 long_description = (HERE / "README.md").read_text()
 
@@ -58,7 +78,17 @@ setup_args = dict(
     cmdclass=cmdclass,
     packages=setuptools.find_packages(),
     install_requires=["jupyterlab~=3.0", "ipywidgets~=7.6"],
-    extras_require={"dev": {"jupyter-packaging", "cookiecutter", "twine", "bumpversion", "black", "pylint", "pyYaml"}},
+    extras_require={
+        "dev": {
+            "jupyter-packaging",
+            "cookiecutter",
+            "twine",
+            "bumpversion",
+            "black",
+            "pylint",
+            "pyYaml",
+        }
+    },
     zip_safe=False,
     include_package_data=True,
     python_requires=">=3.6",

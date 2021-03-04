@@ -5,6 +5,7 @@ node_modules/
 .ipynb_checkpoints
 *.tsbuildinfo
 jupyter_cadquery_widgets/labextension
+jupyter_cadquery_widgets/nbextension
 
 # Created by https://www.gitignore.io/api/python
 # Edit at https://www.gitignore.io/?templates=python
@@ -37,7 +38,6 @@ share/python-wheels/
 .installed.cfg
 *.egg
 MANIFEST
-nbextension/
 
 # PyInstaller
 #  Usually these files are written by a python script from a template

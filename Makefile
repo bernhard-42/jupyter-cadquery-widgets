@@ -30,7 +30,8 @@ endif
 
 # Dist commands
 
-dist:
+dist: clean
+	@jlpm run build:prod
 	@python setup.py bdist_wheel
 
 release:

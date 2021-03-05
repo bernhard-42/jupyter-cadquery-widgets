@@ -59,6 +59,13 @@
     make release
     ```
 
+7. Push release
+
+    ```bash
+    git push
+    git push origin --tags
+    ```
+    
 ### 2 Push changes
 
 1. Push repo and tag

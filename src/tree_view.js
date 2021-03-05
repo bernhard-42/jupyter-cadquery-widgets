@@ -86,11 +86,11 @@ var TreeView = DescriptionView.extend({
       this.updateNodes(this.treeModel, icon_id);
     }
 
-    var toggler = this.el.getElementsByClassName("caret");
+    var toggler = this.el.getElementsByClassName("t-caret");
     for (var i = 0; i < toggler.length; i++) {
       toggler[i].addEventListener("click", e => { // jshint ignore:line
         e.srcElement.parentElement.parentElement.querySelector(".nested").classList.toggle("active");
-        e.srcElement.classList.toggle("caret-down");
+        e.srcElement.classList.toggle("t-caret-down");
       });
     }
   },
@@ -241,7 +241,7 @@ var TreeView = DescriptionView.extend({
     var entry = tag("span", ["node_entry"])
     if (model.type === "node") {
       var span = tag("span", ["node_entry_wrap"])
-      span.appendChild(tag("span", ["caret", "caret-down"]));
+      span.appendChild(tag("span", ["t-caret", "t-caret-down"]));
       for (icon_id in this.icons) {
         img = tag("img", ["icon"], { src: this.getIcon(icon_id, 1) });
         img.setAttribute("icon_id", icon_id);

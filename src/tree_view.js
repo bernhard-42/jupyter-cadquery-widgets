@@ -53,8 +53,8 @@ var TreeModel = SelectionModel.extend({
     _view_name: 'TreeView',
     _model_module: 'jupyter_cadquery',
     _view_module: 'jupyter_cadquery',
-    _model_module_version: "2.0.1",
-    _view_module_version: "2.0.1",
+    _model_module_version: "2.0.2",
+    _view_module_version: "2.0.2",
     icons: null,
     tree: null,
     state: null

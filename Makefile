@@ -45,7 +45,10 @@ install: dist
 	@pip install --upgrade .
 
 check_dist:
-	@twine check dist/*
+	@twine check dist/*.whl
 
 upload:
-	@twine upload dist/*
+	@twine upload dist/*.whl
+
+upload_npm:
+	@npm publish

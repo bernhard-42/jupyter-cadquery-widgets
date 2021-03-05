@@ -1,4 +1,4 @@
-# jupyter_cadquery_widgets 2.0.1
+# jupyter_cadquery_widgets 2.0.2
 
 Treeview and Image Button widgets for [jupyter-cadquery](https://github.com/bernhard-42/jupyter-cadquery)
 

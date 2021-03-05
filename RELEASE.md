@@ -41,16 +41,22 @@
     make dist
     ```
 
-4. Create and tag release
-
-    ```bash
-    make release
-    ```
-
-5. Deploy to pypi
+4. Deploy to pypi
 
     ```bash
     make upload
+    ```
+
+5. Deploy to npm
+
+    ```bash
+    make upload_npm
+    ```
+
+6. Create and tag release
+
+    ```bash
+    make release
     ```
 
 ### 2 Push changes

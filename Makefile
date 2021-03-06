@@ -32,7 +32,7 @@ endif
 
 dist: clean
 	@jlpm run build:prod
-	@python setup.py bdist_wheel
+	@python setup.py bdist_wheel sdist
 
 release:
 	git add .
@@ -45,10 +45,10 @@ install: dist
 	@pip install --upgrade .
 
 check_dist:
-	@twine check dist/*.whl
+	@twine check dist/*.whl dist/*.gz
 
 upload:
-	@twine upload dist/*.whl
+	@twine upload dist/*.whl dist/*.gz
 
 upload_npm:
 	@npm publish
